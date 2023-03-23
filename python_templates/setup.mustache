@@ -17,7 +17,8 @@ VERSION = "{{appVersion}}"
 REQUIRES = [
   "urllib3 >= 1.25.3",
   "python-dateutil",
-  "ozlogger",
+  "stuctlog",
+  "allure-pytest",
 {{#asyncio}}
   "aiohttp >= 3.0.0",
 {{/asyncio}}
@@ -35,8 +36,8 @@ setup(
     version=VERSION,
     description="{{appName}}",
     author="Меньшиков Валерий",
-    author_email="vmenshikov@ozon.ru",
-    url="https://gitlab.ozon.ru/pvz/autotests/apis/{{{projectName}}}",
+    author_email="vmenshikov",
+    url="",
     keywords=["OpenAPI", "OpenAPI-Generator", "{{{appName}}}"],
     python_requires=">=3.6",
     install_requires=REQUIRES,
