@@ -1,9 +1,9 @@
 ```python
 {{#apiInfo}}{{#apis}}{{#-last}}{{#hasHttpSignatureMethods}}import datetime{{/hasHttpSignatureMethods}}{{/-last}}{{/apis}}{{/apiInfo}}
 import time
+import structlog
 import {{{packageName}}}
 from pprint import pprint
-from ozlogger import init_log
 {{#apiInfo}}
 {{#apis}}
 {{#-first}}
@@ -16,8 +16,12 @@ from {{apiPackage}} import {{classVarName}}
 {{#-first}}
 {{> python_doc_auth_partial}}
 
-# init ozlogger for struct log
-init_log.json_renderer(show_curl=True)
+# init log
+structlog.configure(
+    processors=[
+        structlog.processors.JSONRenderer(indent=4, sort_keys=True, ensure_ascii=False)
+    ]
+)
 
 # Enter a context with an instance of the API client
 with {{{packageName}}}.ApiClient(configuration) as api_client:
